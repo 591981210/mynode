@@ -1,5 +1,7 @@
+<!--继承公共模板-->
 {% extends "./layout/layout.html" %}
 
+<!--匹配头部判断-->
 {% block head %}
 <link rel="stylesheet" type="text/css" href="/public/css/page-sj-qa-login.css"/>
 <link rel="stylesheet" type="text/css" href="/public/css/page-sj-qa-logined.css"/>
@@ -12,6 +14,8 @@
 {% endblock %}
 
 {% block main %}
+<!--导入导航栏-->
+{% include "./layout/navbar.html" %}
 <!--两列布局-->
 <div class="wrapper  qa-content">
     <div class="fl  left-list">
@@ -53,7 +57,7 @@
                                                     <li>Javascript</li>
                                                 </ul>
                                                 <div class="fr brower">
-                                                    <p>浏览量 50 | 2017-07-05 15:09 来自 <a href="#">itcast </a></p>
+                                                    <p>浏览量 50 | 2017-07-05 15:09 来自 <a href="#">xxx </a></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -84,7 +88,7 @@
                                                     <li>Javascript</li>
                                                 </ul>
                                                 <div class="fr brower">
-                                                    <p>浏览量 50 | 2017-07-05 15:09 来自 <a href="#">itcast </a></p>
+                                                    <p>浏览量 50 | 2017-07-05 15:09 来自 <a href="#">xxx </a></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -115,7 +119,7 @@
                                                     <li>Javascript</li>
                                                 </ul>
                                                 <div class="fr brower">
-                                                    <p>浏览量 50 | 2017-07-05 15:09 来自 <a href="#">itcast </a></p>
+                                                    <p>浏览量 50 | 2017-07-05 15:09 来自 <a href="#">xxx </a></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -147,7 +151,7 @@
                                                     <li>Javascript</li>
                                                 </ul>
                                                 <div class="fr brower">
-                                                    <p>浏览量 50 | 2017-07-05 15:09 来自 <a href="#">itcast </a></p>
+                                                    <p>浏览量 50 | 2017-07-05 15:09 来自 <a href="#">xxx </a></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -178,7 +182,7 @@
                                                     <li>Javascript</li>
                                                 </ul>
                                                 <div class="fr brower">
-                                                    <p>浏览量 50 | 2017-07-05 15:09 来自 <a href="#">itcast </a></p>
+                                                    <p>浏览量 50 | 2017-07-05 15:09 来自 <a href="#">xxx </a></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -209,7 +213,7 @@
                                                     <li>Javascript</li>
                                                 </ul>
                                                 <div class="fr brower">
-                                                    <p>浏览量 50 | 2017-07-05 15:09 来自 <a href="#">itcast </a></p>
+                                                    <p>浏览量 50 | 2017-07-05 15:09 来自 <a href="#">xxx </a></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -308,5 +312,3 @@
     <div class="clearfix"></div>
 </div>
 {% endblock%}
-
-</html>
