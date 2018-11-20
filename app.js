@@ -2,8 +2,10 @@ const express = require('express')
 const nunjucks = require('nunjucks')
 const path = require('path')
 const router = require('./router/')
-
 const app = express()
+var session = require('express-session')
+var cookieParser = require('cookie-parser')
+
 
 
 // 开放 public 目录资源
@@ -14,6 +16,16 @@ app.use(express.json()) // application/json 格式的数据 {key: value, key: va
 app.use(express.urlencoded({
     extended: true
 })) // application/x-www-form-urlencoded key=value&key=value...
+
+//session
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true
+}))
+//    cookie
+app.use(cookieParser())
+
 
 nunjucks.configure(path.join(__dirname, './view/'), {
     autoescape: true,
