@@ -136,66 +136,66 @@
     const $signupForm = $('#signup_form')
     const $signinForm = $('#signin_form')
 
-    // $signupForm.on('submit', handleSignup)
-    // $signinForm.on('submit', handleSignin)
+    $signupForm.on('submit', handleSignup)
+    $signinForm.on('submit', handleSignin)
 
-    $signupForm.validate({
-        rules: { // 验证规则对象
-            email: {
-                required: true,
-                minlength: 3,
-                // maxlength: 12,
-                remote: '/users/check' // /users/check?username=xxx
-            },
-            password: {
-                required: true,
-                minlength: 6,
-                maxlength: 18
-            },
-            nickname: {
-                required: true,
-                minlength: 2,
-                maxlength: 12,
-                remote: '/users/check' // /users/check?nickname=xxx
-            },
-            captcha: {
-                required: true,
-                remote: '/captcha/check'
-            },
-            agree: {
-                required: true
-            }
-        },
-        messages: {
-            username: {
-                required: '请输入用户名',
-                minlength: '用户名必须为3-12位',
-                maxlength: '用户名必须为3-12位',
-                remote: '用户名已存在'
-            },
-            password: {
-                required: '请输入密码',
-                minlength: '密码必须为6-18位',
-                maxlength: '密码必须为6-18位'
-            },
-            nickname: {
-                required: '请输入昵称',
-                minlength: '昵称必须为2-12位',
-                maxlength: '昵称必须为2-12位',
-                remote: '昵称已存在'
-            },
-            captcha: {
-                required: '请输入验证码',
-                remote: '验证码错误或者已过期，请点击获取最新验证码'
-            },
-            agree: {
-                required: '必须同意用户协议'
-            }
-        },
-        submitHandler: form => {
-            handleSignup()
-        }
-    })
+    // $signupForm.validate({
+    //     rules: { // 验证规则对象
+    //         email: {
+    //             required: true,
+    //             minlength: 3,
+    //             // maxlength: 12,
+    //             remote: '/users/check' // /users/check?username=xxx
+    //         },
+    //         password: {
+    //             required: true,
+    //             minlength: 6,
+    //             maxlength: 18
+    //         },
+    //         nickname: {
+    //             required: true,
+    //             minlength: 2,
+    //             maxlength: 12,
+    //             remote: '/users/check' // /users/check?nickname=xxx
+    //         },
+    //         captcha: {
+    //             required: true,
+    //             remote: '/captcha/check'
+    //         },
+    //         agree: {
+    //             required: true
+    //         }
+    //     },
+    //     messages: {
+    //         username: {
+    //             required: '请输入用户名',
+    //             minlength: '用户名必须为3-12位',
+    //             maxlength: '用户名必须为3-12位',
+    //             remote: '用户名已存在'
+    //         },
+    //         password: {
+    //             required: '请输入密码',
+    //             minlength: '密码必须为6-18位',
+    //             maxlength: '密码必须为6-18位'
+    //         },
+    //         nickname: {
+    //             required: '请输入昵称',
+    //             minlength: '昵称必须为2-12位',
+    //             maxlength: '昵称必须为2-12位',
+    //             remote: '昵称已存在'
+    //         },
+    //         captcha: {
+    //             required: '请输入验证码',
+    //             remote: '验证码错误或者已过期，请点击获取最新验证码'
+    //         },
+    //         agree: {
+    //             required: '必须同意用户协议'
+    //         }
+    //     },
+    //     submitHandler: form => {
+    //         handleSignup()
+    //     }
+    // })
 
 
     function handleCaptcha() {

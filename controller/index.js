@@ -1,5 +1,6 @@
 const User = require('../service/user.js')
 var svgCaptcha = require('svg-captcha');
+const config = require('../config/config.default')
 
 module.exports.showIndex = async (req, res, next) => {
     res.render('index.html')
@@ -11,38 +12,42 @@ module.exports.loginIndex = async (req, res, next) => {
  * 用户注册
  */
 module.exports.signup = async (req, res, next) => {
-    // 1. 获取数据
-    const {email, password, nickname, captcha} = req.body
+    try {
+        // 1. 获取数据
+        const {email, password, nickname, captcha} = req.body
 
-    const {captcha: sessionCaptcha} = req.session
-    // 如果当前最新时间超过了会话验证码的过期时间
-    if (+new Date() > sessionCaptcha.expires) {
-        return res.status(200).json({
-            code: 4,
-            message: '验证码已过期'
+        const {captcha: sessionCaptcha} = req.session
+        // 如果当前最新时间超过了会话验证码的过期时间
+        if (+new Date() > sessionCaptcha.expires) {
+            return res.status(200).json({
+                code: 4,
+                message: '验证码已过期'
+            })
+        }
+
+        // 2. 表单数据验证
+        // 验证码校验
+        if (captcha.toLowerCase() !== sessionCaptcha.text.toLowerCase()) {
+            return res.status(200).json({
+                code: 1,
+                message: '验证码错误'
+            })
+        }
+
+        // 3. 注册
+        const user = await User.signup({
+            email,
+            password,
+            nickname
         })
-    }
 
-    // 2. 表单数据验证
-    // 验证码校验
-    if (captcha.toLowerCase() !== sessionCaptcha.text.toLowerCase()) {
-        return res.status(200).json({
-            code: 1,
-            message: '验证码错误'
+        res.status(200).json({
+            code: 0,
+            message: 'ok'
         })
+    } catch (err) {
+        next(err)
     }
-
-    // 3. 注册
-    const user = await User.signup({
-        email,
-        password,
-        nickname
-    })
-
-    res.status(200).json({
-        code: 0,
-        message: 'ok'
-    })
 }
 
 
@@ -62,9 +67,9 @@ module.exports.captcha = async (req, res, next) => {
 /**
  * 校验验证码
  */
-exports.checkCaptcha = async(req, res, next) => {
-    const { captcha } = req.query
-    const { captcha: sessionCaptcha } = req.session
+module.exports.checkCaptcha = async (req, res, next) => {
+    const {captcha} = req.query
+    const {captcha: sessionCaptcha} = req.session
     console.log(123123)
     console.log(sessionCaptcha);
     let ret = false
@@ -81,3 +86,47 @@ exports.checkCaptcha = async(req, res, next) => {
 }
 
 
+
+/**
+ * 用户登录
+ */
+module.exports.signin = async(req, res, next) => {
+    try {
+        const { email, password, remember } = req.body
+
+        const user = await User.signin({
+            email,
+            password
+        })
+
+        // 用户登录成功，记录 Session 保存登录状态
+        req.session.user = user
+
+        // 记住我
+        if (remember) {
+            const encryptUser = encrypt(JSON.stringify({
+                email,
+                password
+            }))
+            res.cookie('user', encryptUser, {
+                maxAge: config.rememberMeExpires // 滑动过期时间，单位是毫秒，1000 * 60 * 60 * 24
+            })
+        }
+
+        res.send(user)
+    } catch (err) {
+        next(err)
+    }
+}
+
+/**
+ * 用户退出
+ */
+exports.signout = async(req, res, next) => {
+    // 1. 清除 Session 中的登录信息
+    req.session.user = null
+    // 2. 清除 Cookie 中的登录信息
+    res.clearCookie('user')
+    // 3. 重定向到登录页
+    res.redirect('/login')
+}

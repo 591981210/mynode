@@ -16,4 +16,6 @@ router.post('/signup', indexCtrl.signup);
 router.get('/captcha', indexCtrl.captcha);
 router.get('/captcha/check', indexCtrl.checkCaptcha)
 
+
+router.post('/signin',indexCtrl.signin)
 module.exports = router

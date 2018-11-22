@@ -35,10 +35,18 @@ nunjucks.configure(path.join(__dirname, './view/'), {
 
 //挂载html 访问路由链接
 app.use(...router)
+//错误返回
+app.use((err, req, res, next) => {
+    const response = err.response
+    if (response) {
+        res.status(response.status).send(response.data)
+    } else {
+        res.status(500).send(err)
+    }
+})
 
-
-app.listen(3000,()=>{
+app.listen(3001,()=>{
 
     console.log('服务启动成功');
-    console.log('http://localhost:3000/')
+    console.log('http://localhost:3001/')
 })
