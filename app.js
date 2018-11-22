@@ -5,6 +5,7 @@ const router = require('./router')
 const app = express()
 var session = require('express-session')
 var cookieParser = require('cookie-parser')
+const rememberMe = require('./middleware/remember-me')
 
 
 
@@ -17,14 +18,15 @@ app.use(express.urlencoded({
     extended: true
 })) // application/x-www-form-urlencoded key=value&key=value...
 
-//session
+// 配置解析 Cookie 的中间件
+app.use(cookieParser())
+
+// 配置 Session 中间件
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
     saveUninitialized: true
 }))
-//    cookie
-app.use(cookieParser())
 
 
 nunjucks.configure(path.join(__dirname, './view/'), {
@@ -34,6 +36,7 @@ nunjucks.configure(path.join(__dirname, './view/'), {
 });
 
 //挂载html 访问路由链接
+app.use(rememberMe)
 app.use(...router)
 //错误返回
 app.use((err, req, res, next) => {
