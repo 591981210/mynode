@@ -2,6 +2,7 @@ const express = require('express')
 const nunjucks = require('nunjucks')
 const path = require('path')
 const router = require('./router')
+const proxy = require('http-proxy-middleware')
 const config = require('./config/config.default')
 const app = express()
 var session = require('express-session')
@@ -9,6 +10,16 @@ var cookieParser = require('cookie-parser')
 const rememberMe = require('./middleware/remember-me')
 
 
+// 配置代理中间件,一般上传文件时,需要将域名代理到腾讯或阿里云等,所以/api 开头都代理处理
+app.use('/api', proxy({
+    // /api/upload
+    // http://192.168.10.217:8000/api/v1/upload
+    target: config.baseURL, // 代理的目标网址
+    changeOrigin: true,
+    pathRewrite: {
+        '^/api' : '',// /api/upload
+    },
+}))
 
 // 开放 public 目录资源
 app.use('/public/', express.static(path.join(__dirname, './public/')))
