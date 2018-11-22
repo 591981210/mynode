@@ -1,9 +1,7 @@
 const express = require('express')
 const nunjucks = require('nunjucks')
 const path = require('path')
-const router = require('./router/')
-const userRouter = require('./router/user')
-
+const router = require('./router')
 const app = express()
 var session = require('express-session')
 var cookieParser = require('cookie-parser')
@@ -36,8 +34,7 @@ nunjucks.configure(path.join(__dirname, './view/'), {
 });
 
 //挂载html 访问路由链接
-app.use(router)
-app.use(userRouter)
+app.use(...router)
 
 
 app.listen(3000,()=>{
