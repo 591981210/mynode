@@ -7,7 +7,7 @@ module.exports.showIndex = async (req, res, next) => {
         sessionUser:req.session.user
     })
 }
-module.exports.loginIndex = async (req, res, next) => {
+module.exports.showLogin = async (req, res, next) => {
     res.render('login.html')
 }
 /**

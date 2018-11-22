@@ -51,14 +51,13 @@
                                 type="email"
                                 id="email"
                                 name="email"
-                                required
                                 placeholder="请输入邮箱"/>
                     </div>
                 </div>
                 <div class="control-group">
                     <label for="password" class="control-label">密码</label>
                     <div class="controls">
-                        <input type="text" id="password" name="password" placeholder="请输入密码" required
+                        <input type="text" id="password" name="password" placeholder="请输入密码" 
                                class="input-xlarge"/>
                     </div>
                 </div>
@@ -68,14 +67,14 @@
                             <div class="control-group">
                                 <label for="nickname" class="control-label">昵称</label>
                                 <div class="controls">
-                                    <input type="text" id="nickname" name="nickname" required placeholder="请输入昵称"
+                                    <input type="text" id="nickname" name="nickname" placeholder="请输入昵称"
                                            class="input-xlarge"/>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label for="captcha" class="control-label">验证码</label>
                                 <div class="controls">
-                                    <input type="text" id="captcha" name="captcha" required placeholder="请输入验证码"
+                                    <input type="text" id="captcha" name="captcha" placeholder="请输入验证码"
                                            class="input-xlarge" style="width: 200px;"/>
                                     <img id="captcha_img" src="/captcha" alt="captcha">
                                 </div>
@@ -104,14 +103,14 @@
                 <div class="control-group">
                     <label for="inputname" class="control-label">邮箱</label>
                     <div class="controls">
-                        <input type="email" id="inputname" name="email" required placeholder="请输入邮箱"
+                        <input type="email" id="inputname" name="email" placeholder="请输入邮箱"
                                class="input-xlarge" data-rules="required"/>
                     </div>
                 </div>
                 <div class="control-group">
                     <label for="inputpassword" class="control-label">密码</label>
                     <div class="controls">
-                        <input type="text" id="inputpassword" name="password" required placeholder="输入密码"
+                        <input type="text" id="inputpassword" name="password" placeholder="输入密码"
                                class="input-xlarge"/>
                     </div>
                 </div>
@@ -142,54 +141,54 @@
     // $signupForm.validate({
     //     rules: { // 验证规则对象
     //         email: {
-    //             required: true,
+    //             : true,
     //             minlength: 3,
     //             // maxlength: 12,
     //             remote: '/users/check' // /users/check?username=xxx
     //         },
     //         password: {
-    //             required: true,
+    //             : true,
     //             minlength: 6,
     //             maxlength: 18
     //         },
     //         nickname: {
-    //             required: true,
+    //             : true,
     //             minlength: 2,
     //             maxlength: 12,
     //             remote: '/users/check' // /users/check?nickname=xxx
     //         },
     //         captcha: {
-    //             required: true,
+    //             : true,
     //             remote: '/captcha/check'
     //         },
     //         agree: {
-    //             required: true
+    //             : true
     //         }
     //     },
     //     messages: {
     //         username: {
-    //             required: '请输入用户名',
+    //             : '请输入用户名',
     //             minlength: '用户名必须为3-12位',
     //             maxlength: '用户名必须为3-12位',
     //             remote: '用户名已存在'
     //         },
     //         password: {
-    //             required: '请输入密码',
+    //             : '请输入密码',
     //             minlength: '密码必须为6-18位',
     //             maxlength: '密码必须为6-18位'
     //         },
     //         nickname: {
-    //             required: '请输入昵称',
+    //             : '请输入昵称',
     //             minlength: '昵称必须为2-12位',
     //             maxlength: '昵称必须为2-12位',
     //             remote: '昵称已存在'
     //         },
     //         captcha: {
-    //             required: '请输入验证码',
+    //             : '请输入验证码',
     //             remote: '验证码错误或者已过期，请点击获取最新验证码'
     //         },
     //         agree: {
-    //             required: '必须同意用户协议'
+    //             : '必须同意用户协议'
     //         }
     //     },
     //     submitHandler: form => {
