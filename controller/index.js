@@ -3,9 +3,7 @@ var svgCaptcha = require('svg-captcha');
 const config = require('../config/config.default')
 
 module.exports.showIndex = async (req, res, next) => {
-    res.render('index.html',{
-        sessionUser:req.session.user
-    })
+    res.render('index.html')
 }
 module.exports.showLogin = async (req, res, next) => {
     res.render('login.html')

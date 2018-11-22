@@ -2,6 +2,7 @@ const express = require('express')
 const nunjucks = require('nunjucks')
 const path = require('path')
 const router = require('./router')
+const config = require('./config/config.default')
 const app = express()
 var session = require('express-session')
 var cookieParser = require('cookie-parser')
@@ -37,6 +38,12 @@ nunjucks.configure(path.join(__dirname, './view/'), {
 
 //挂载html 访问路由链接
 app.use(rememberMe)
+app.use((req, res, next) => {
+    // 挂载到 app.locals 中的数据可以直接在模板页中访问
+    app.locals.sessionUser = req.session.user
+    app.locals.config = config
+    next()
+})
 app.use(...router)
 //错误返回
 app.use((err, req, res, next) => {
